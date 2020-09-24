@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => res.send('API running'));
 
 // Define routes
+app.use('/api/todo', require('./routes/todo'));
 
 const PORT = process.env.PORT || 5000;
 

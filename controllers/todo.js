@@ -47,7 +47,15 @@ exports.showToDosInProgress = async (req, res) => {
   }
 };
 
-exports.showToDosCompleted = (req, res) => {};
+exports.showToDosCompleted = async (req, res) => {
+  try {
+    const todos = await ToDo.find({ isCompleted: true });
+    res.json(todos);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
 
 exports.createToDo = async (req, res) => {
   try {

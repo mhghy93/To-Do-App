@@ -1,6 +1,14 @@
 const ToDo = require('../models/todo');
 
-exports.showToDos = (req, res) => {};
+exports.showToDos = async (req, res) => {
+  try {
+    const todos = await ToDo.find();
+    res.json(todos);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
 
 exports.showToDosInProgress = (req, res) => {};
 

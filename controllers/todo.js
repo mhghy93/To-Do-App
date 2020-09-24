@@ -10,6 +10,21 @@ exports.showToDos = async (req, res) => {
   }
 };
 
+exports.moveToDoInProgress = async (req, res) => {
+  try {
+    const todo = await ToDo.findById(req.params.id);
+    todo.inProgress = true;
+    todo.inProgressAt = new Date();
+    await todo.save();
+    res.json(todo);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
+exports.completeToDo = (req, res) => {};
+
 exports.showToDosInProgress = (req, res) => {};
 
 exports.showToDosCompleted = (req, res) => {};

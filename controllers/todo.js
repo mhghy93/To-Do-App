@@ -72,6 +72,17 @@ exports.createToDo = async (req, res) => {
   }
 };
 
-exports.editToDo = (req, res) => {};
+exports.editToDo = async (req, res) => {
+  try {
+    const { title } = req.body;
+    const todo = await ToDo.findById(req.params.id);
+    todo.title = title;
+    await todo.save();
+    res.json(todo);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
 
 exports.deleteToDo = (req, res) => {};

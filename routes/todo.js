@@ -15,7 +15,7 @@ router.put('/inProgress/:id', toDoController.moveToDoInProgress);
 
 router.put('/complete/:id', toDoController.completeToDo);
 
-router.put('/:id', toDoController.editToDo);
+router.put('/edit/:id', toDoValidations(), validate, toDoController.editToDo);
 
 router.delete('/:id', toDoController.deleteToDo);
 

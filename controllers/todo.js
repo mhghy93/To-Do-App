@@ -85,4 +85,12 @@ exports.editToDo = async (req, res) => {
   }
 };
 
-exports.deleteToDo = (req, res) => {};
+exports.deleteToDo = async (req, res) => {
+  try {
+    await ToDo.findByIdAndRemove(req.params.id);
+    res.json({ msg: 'ToDo removed' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};

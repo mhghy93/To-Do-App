@@ -17,6 +17,6 @@ router.put('/complete/:id', toDoController.completeToDo);
 
 router.put('/edit/:id', toDoValidations(), validate, toDoController.editToDo);
 
-router.delete('/:id', toDoController.deleteToDo);
+router.delete('/delete/:id', toDoController.deleteToDo);
 
 module.exports = router;

@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get('/all', toDoController.showToDos);
 
+router.get('/remaining', toDoController.showToDosRemaining);
+
 router.get('/inProgress', toDoController.showToDosInProgress);
 
 router.get('/completed', toDoController.showToDosCompleted);

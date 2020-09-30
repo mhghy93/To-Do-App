@@ -13,7 +13,11 @@ import {
 } from '../types';
 
 const ToDoState = (props) => {
-  const initialState = {};
+  const initialState = {
+    todos: [],
+    todosInProgress: [],
+    todosCompleted: [],
+  };
 };
 
 export default ToDoState;

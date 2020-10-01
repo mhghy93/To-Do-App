@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Home from './components/pages/Home';
 import Navbar from './components/layout/Navbar';
+
 import './App.css';
+
+import ToDoState from './context/todo/ToDoState';
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <Home />
-    </div>
+    <ToDoState>
+      <Fragment>
+        <Navbar />
+        <Home />
+      </Fragment>
+    </ToDoState>
   );
 }
 

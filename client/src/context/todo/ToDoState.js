@@ -3,6 +3,7 @@ import axios from 'axios';
 import ToDoContext from './ToDoContext';
 import {
   SHOW_TODOS,
+  SHOW_TODOS_REMAINING,
   SHOW_TODOS_IN_PROGRESS,
   SHOW_TODOS_COMPLETED,
   MOVE_TODO_IN_PROGRESS,

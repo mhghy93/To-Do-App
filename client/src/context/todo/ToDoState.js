@@ -13,7 +13,6 @@ import {
   EDIT_TODO,
   DELETE_TODO,
 } from '../types';
-import { STATES } from 'mongoose';
 
 const ToDoState = (props) => {
   const initialState = {
@@ -25,11 +24,85 @@ const ToDoState = (props) => {
 
   const [state, dispatch] = useReducer(ToDoReducer, initialState);
 
+  const showToDos = async () => {
+    const res = await axios.get('api/todo/all');
+    dispatch({
+      type: SHOW_TODOS,
+      payload: res.data,
+    });
+  };
+
   const showToDosRemaining = async () => {
     const res = await axios.get('api/todo/remaining');
     dispatch({
       type: SHOW_TODOS_REMAINING,
       payload: res.data,
+    });
+  };
+
+  const showToDosInProgress = async () => {
+    const res = await axios.get('api/todo/inProgress');
+    dispatch({
+      type: SHOW_TODOS_IN_PROGRESS,
+      payload: res.data,
+    });
+  };
+
+  const showToDosCompleted = async () => {
+    const res = await axios.get('api/todo/completed');
+    dispatch({
+      type: SHOW_TODOS_COMPLETED,
+      payload: res.data,
+    });
+  };
+
+  const moveToDoInProgress = async (id) => {
+    const res = await axios.put(`api/todo/inProgress/${id}`);
+    dispatch({
+      type: MOVE_TODO_IN_PROGRESS,
+      payload: res.data,
+    });
+  };
+
+  const completeToDo = async (id) => {
+    const res = await axios.put(`api/todo/complete/${id}`);
+    dispatch({
+      type: COMPLETE_TODO,
+      payload: res.data,
+    });
+  };
+
+  const createToDo = async (formData) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const res = await axios.put(`api/todo/create`, config, formData);
+    dispatch({
+      type: CREATE_TODO,
+      payload: res.data,
+    });
+  };
+
+  const editToDo = async (id, formData) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const res = await axios.put(`api/todo/edit/${id}`, config, formData);
+    dispatch({
+      type: EDIT_TODO,
+      payload: res.data,
+    });
+  };
+
+  const deleteToDo = async (id) => {
+    await axios.delete(`api/todo/delete/${id}`);
+    dispatch({
+      type: DELETE_TODO,
+      payload: id,
     });
   };
 
@@ -40,7 +113,15 @@ const ToDoState = (props) => {
         todosRemaining: state.todosRemaining,
         todosInProgress: state.todosInProgress,
         todosCompleted: state.todosCompleted,
+        showToDos,
         showToDosRemaining,
+        showToDosInProgress,
+        showToDosCompleted,
+        moveToDoInProgress,
+        completeToDo,
+        createToDo,
+        editToDo,
+        deleteToDo,
       }}
     >
       {props.children}

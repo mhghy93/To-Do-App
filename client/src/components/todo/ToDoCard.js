@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -11,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ToDoCard = () => {
+const ToDoCard = ({ cardType }) => {
   const classes = useStyles();
 
   return (
@@ -19,15 +20,19 @@ const ToDoCard = () => {
       <Card className={classes.root}>
         <CardContent>
           <Typography variant="h5" component="h2">
-            ToDos
+            {cardType}
           </Typography>
-          <Typography variant="body2" component="p">
+          <Typography variant="body2" component="div">
             <ToDoItem />
           </Typography>
         </CardContent>
       </Card>
     </Fragment>
   );
+};
+
+ToDoCard.propTypes = {
+  cardType: PropTypes.string.isRequired,
 };
 
 export default ToDoCard;

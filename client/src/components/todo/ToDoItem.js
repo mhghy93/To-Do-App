@@ -21,7 +21,7 @@ const ToDoItem = () => {
       <CardContent>
         <Grid container spacing={1}>
           <Grid item xs={12} sm={6}>
-            <Typography variant="body2" component="p">
+            <Typography variant="body2" component="div">
               ToDo
             </Typography>
           </Grid>

@@ -1,11 +1,10 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import ToDoItem from './ToDoItem';
-import ToDoContext from '../../context/todo/ToDoContext';
 
 const useStyles = makeStyles({
   root: {
@@ -13,17 +12,8 @@ const useStyles = makeStyles({
   },
 });
 
-const ToDoCard = ({ cardType }) => {
+const ToDoCard = ({ cardType, todos }) => {
   const classes = useStyles();
-
-  const todoContext = useContext(ToDoContext);
-
-  const { todos, showToDos } = todoContext;
-
-  useEffect(() => {
-    showToDos();
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <Fragment>
@@ -45,6 +35,7 @@ const ToDoCard = ({ cardType }) => {
 
 ToDoCard.propTypes = {
   cardType: PropTypes.string.isRequired,
+  todos: PropTypes.array.isRequired,
 };
 
 export default ToDoCard;

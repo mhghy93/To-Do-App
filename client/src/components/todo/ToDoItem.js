@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ToDoItem = () => {
+const ToDoItem = ({ todo }) => {
   const classes = useStyles();
 
   return (
@@ -22,7 +22,7 @@ const ToDoItem = () => {
         <Grid container spacing={1}>
           <Grid item xs={12} sm={6}>
             <Typography variant="body2" component="div">
-              ToDo
+              {todo.title}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3}>

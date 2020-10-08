@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -7,10 +7,26 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ToDoContext from '../../context/todo/ToDoContext';
-import { useContext } from 'react';
 
 const AddToDo = ({ open, handleClose }) => {
   const todoContext = useContext(ToDoContext);
+
+  const { createToDo } = todoContext;
+
+  const [todo, setTodo] = useState({
+    title: '',
+  });
+
+  const { title } = todo;
+
+  const onChange = (e) => setTodo({ ...todo, [e.target.name]: e.target.value });
+
+  const handleAddToDo = (e) => {
+    e.preventDefault();
+    createToDo(todo);
+    handleClose();
+    console.log('a', e);
+  };
 
   return (
     <Dialog
@@ -23,17 +39,19 @@ const AddToDo = ({ open, handleClose }) => {
         <TextField
           autoFocus
           margin="dense"
-          id="name"
+          id="title"
           label="Title"
           type="text"
           fullWidth
+          onChange={onChange}
+          value={title}
         />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={handleAddToDo} color="primary">
           Add
         </Button>
       </DialogActions>

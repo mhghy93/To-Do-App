@@ -55,7 +55,7 @@ export default (state, action) => {
       return {
         ...state,
         todos: [action.payload, ...state.todos],
-        todosInProgress: [action.payload, ...state.todosRemaining],
+        todosRemaining: [action.payload, ...state.todosRemaining],
       };
     case EDIT_TODO:
       return {

@@ -25,7 +25,6 @@ const AddToDo = ({ open, handleClose }) => {
     e.preventDefault();
     createToDo(todo);
     handleClose();
-    console.log('a', e);
   };
 
   return (
@@ -40,6 +39,7 @@ const AddToDo = ({ open, handleClose }) => {
           autoFocus
           margin="dense"
           id="title"
+          name="title"
           label="Title"
           type="text"
           fullWidth

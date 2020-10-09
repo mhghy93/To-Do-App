@@ -78,7 +78,7 @@ const ToDoState = (props) => {
         'Content-Type': 'application/json',
       },
     };
-    const res = await axios.put(`api/todo/create`, config, formData);
+    const res = await axios.post('api/todo/create', formData, config);
     dispatch({
       type: CREATE_TODO,
       payload: res.data,

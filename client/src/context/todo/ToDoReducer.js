@@ -88,6 +88,14 @@ export default (state, action) => {
           (todo) => todo._id !== action.payload
         ),
       };
+    case CLEAR_TODO:
+      return {
+        ...state,
+        todos: [],
+        todosRemaining: [],
+        todosInProgress: [],
+        todosCompleted: [],
+      };
     default:
       return state;
   }

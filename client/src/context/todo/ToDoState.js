@@ -107,6 +107,10 @@ const ToDoState = (props) => {
     });
   };
 
+  const clearToDo = () => {
+    dispatch({ type: CLEAR_TODO });
+  };
+
   return (
     <ToDoContext.Provider
       value={{
@@ -123,6 +127,7 @@ const ToDoState = (props) => {
         createToDo,
         editToDo,
         deleteToDo,
+        clearToDo,
       }}
     >
       {props.children}

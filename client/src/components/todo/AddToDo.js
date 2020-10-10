@@ -24,6 +24,7 @@ const AddToDo = ({ open, handleClose }) => {
   const handleAddToDo = (e) => {
     e.preventDefault();
     createToDo(todo);
+    setTodo('');
     handleClose();
   };
 

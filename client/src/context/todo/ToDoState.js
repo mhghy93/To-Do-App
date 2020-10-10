@@ -12,6 +12,7 @@ import {
   CREATE_TODO,
   EDIT_TODO,
   DELETE_TODO,
+  CLEAR_TODO,
 } from '../types';
 
 const ToDoState = (props) => {

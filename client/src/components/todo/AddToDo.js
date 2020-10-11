@@ -45,7 +45,7 @@ const AddToDo = ({ open, handleClose }) => {
           type="text"
           fullWidth
           onChange={onChange}
-          value={title}
+          value={title || ''}
         />
       </DialogContent>
       <DialogActions>

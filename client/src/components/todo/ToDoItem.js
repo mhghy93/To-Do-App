@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import EditToDo from './EditToDo';
+import DeleteToDo from './DeleteToDo';
 
 const useStyles = makeStyles({
   root: {
@@ -20,12 +21,22 @@ const ToDoItem = ({ todo }) => {
 
   const [open, setOpen] = useState(false);
 
+  const [deleteOpen, setDeleteOpen] = useState(false);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleDeleteOpen = () => {
+    setDeleteOpen(true);
+  };
+
+  const handleDeleteClose = () => {
+    setDeleteOpen(false);
   };
 
   return (
@@ -44,9 +55,18 @@ const ToDoItem = ({ todo }) => {
             <EditToDo open={open} handleClose={handleClose} todoItem={todo} />
           </Grid>
           <Grid item xs={12} sm={3}>
-            <Button variant="contained" color="secondary">
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleDeleteOpen}
+            >
               Delete
             </Button>
+            <DeleteToDo
+              open={deleteOpen}
+              handleClose={handleDeleteClose}
+              todoItem={todo}
+            />
           </Grid>
         </Grid>
       </CardContent>

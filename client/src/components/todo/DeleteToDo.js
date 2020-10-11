@@ -1,29 +1,21 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ToDoContext from '../../context/todo/ToDoContext';
 
-const EditToDo = ({ open, handleClose, todoItem }) => {
+const DeleteToDo = ({ open, handleClose, todoItem }) => {
   const todoContext = useContext(ToDoContext);
 
-  const { editToDo } = todoContext;
+  const { deleteToDo } = todoContext;
 
-  const [todo, setTodo] = useState({
-    title: todoItem.title,
-  });
-
-  const { title } = todo;
-
-  const onChange = (e) => setTodo({ ...todo, [e.target.name]: e.target.value });
-
-  const handleEditToDo = (e) => {
+  const handleDeleteToDo = (e) => {
     e.preventDefault();
-    editToDo(todoItem._id, todo);
+    deleteToDo(todoItem._id);
     handleClose();
   };
 
@@ -33,36 +25,28 @@ const EditToDo = ({ open, handleClose, todoItem }) => {
       onClose={handleClose}
       aria-labelledby="form-dialog-title"
     >
-      <DialogTitle id="form-dialog-title">Edit ToDo</DialogTitle>
+      <DialogTitle id="form-dialog-title">Delete ToDo</DialogTitle>
       <DialogContent>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="title"
-          name="title"
-          label="Title"
-          type="text"
-          fullWidth
-          onChange={onChange}
-          value={title || ''}
-        />
+        <DialogContentText>
+          Are you sure, you want to delete this?
+        </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleEditToDo} color="primary">
-          Update
+        <Button onClick={handleDeleteToDo} color="secondary">
+          Delete
         </Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-EditToDo.propTypes = {
+DeleteToDo.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
   todoItem: PropTypes.object.isRequired,
 };
 
-export default EditToDo;
+export default DeleteToDo;

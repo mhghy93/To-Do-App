@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -37,6 +38,10 @@ const ToDoItem = ({ todo }) => {
       </CardContent>
     </Card>
   );
+};
+
+ToDoItem.propTypes = {
+  todo: PropTypes.object.isRequired,
 };
 
 export default ToDoItem;

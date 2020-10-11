@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import EditToDo from './EditToDo';
 
 const useStyles = makeStyles({
   root: {
@@ -17,6 +18,16 @@ const useStyles = makeStyles({
 const ToDoItem = ({ todo }) => {
   const classes = useStyles();
 
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
@@ -27,7 +38,10 @@ const ToDoItem = ({ todo }) => {
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3}>
-            <Button variant="contained">Edit</Button>
+            <Button variant="contained" onClick={handleClickOpen}>
+              Edit
+            </Button>
+            <EditToDo open={open} handleClose={handleClose} todoItem={todo} />
           </Grid>
           <Grid item xs={12} sm={3}>
             <Button variant="contained" color="secondary">

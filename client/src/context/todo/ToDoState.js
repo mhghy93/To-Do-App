@@ -92,7 +92,7 @@ const ToDoState = (props) => {
         'Content-Type': 'application/json',
       },
     };
-    const res = await axios.put(`api/todo/edit/${id}`, config, formData);
+    const res = await axios.put(`api/todo/edit/${id}`, formData, config);
     dispatch({
       type: EDIT_TODO,
       payload: res.data,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -12,6 +12,7 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import DoneIcon from '@material-ui/icons/Done';
 import EditToDo from './EditToDo';
 import DeleteToDo from './DeleteToDo';
+import ToDoContext from '../../context/todo/ToDoContext';
 
 const useStyles = makeStyles({
   root: {
@@ -32,9 +33,18 @@ const useStyles = makeStyles({
 const ToDoItem = ({ todo }) => {
   const classes = useStyles();
 
+  const todoContext = useContext(ToDoContext);
+
+  const { moveToDoInProgress } = todoContext;
+
   const [open, setOpen] = useState(false);
 
   const [deleteOpen, setDeleteOpen] = useState(false);
+
+  const handleMoveTodoInProgress = (e) => {
+    e.preventDefault();
+    moveToDoInProgress(todo._id);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -68,7 +78,10 @@ const ToDoItem = ({ todo }) => {
               Created on {new Date(todo.createdAt).toLocaleDateString()}
             </Typography>
             {!todo.inProgress && !todo.isCompleted && (
-              <Button className={classes.startTaskColor}>
+              <Button
+                className={classes.startTaskColor}
+                onClick={handleMoveTodoInProgress}
+              >
                 <KeyboardArrowRightIcon /> Start Task
               </Button>
             )}

@@ -38,7 +38,7 @@ export default (state, action) => {
         ...state,
         todosInProgress: [action.payload, ...state.todosInProgress],
         todosRemaining: state.todosRemaining.filter(
-          (todo) => todo !== action.payload
+          (todo) => todo._id !== action.payload._id
         ),
       };
     case COMPLETE_TODO:

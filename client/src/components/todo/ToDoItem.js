@@ -35,7 +35,7 @@ const ToDoItem = ({ todo }) => {
 
   const todoContext = useContext(ToDoContext);
 
-  const { moveToDoInProgress } = todoContext;
+  const { moveToDoInProgress, completeToDo } = todoContext;
 
   const [open, setOpen] = useState(false);
 
@@ -44,6 +44,11 @@ const ToDoItem = ({ todo }) => {
   const handleMoveTodoInProgress = (e) => {
     e.preventDefault();
     moveToDoInProgress(todo._id);
+  };
+
+  const handleCompleteTodo = (e) => {
+    e.preventDefault();
+    completeToDo(todo._id);
   };
 
   const handleClickOpen = () => {
@@ -87,7 +92,10 @@ const ToDoItem = ({ todo }) => {
             )}
 
             {!todo.isCompleted && (
-              <Button className={classes.completeTaskColor}>
+              <Button
+                className={classes.completeTaskColor}
+                onClick={handleCompleteTodo}
+              >
                 <DoneIcon /> Complete Task
               </Button>
             )}

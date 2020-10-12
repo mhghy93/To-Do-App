@@ -14,6 +14,9 @@ const useStyles = makeStyles({
     minWidth: 275,
     marginTop: 30,
   },
+  dateColor: {
+    color: '#757575',
+  },
 });
 
 const ToDoItem = ({ todo }) => {
@@ -46,6 +49,13 @@ const ToDoItem = ({ todo }) => {
           <Grid item xs={12} sm={6}>
             <Typography variant="body2" component="div">
               {todo.title}
+            </Typography>
+            <Typography
+              className={classes.dateColor}
+              variant="body2"
+              component="div"
+            >
+              Created on {new Date(todo.createdAt).toLocaleDateString()}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3}>

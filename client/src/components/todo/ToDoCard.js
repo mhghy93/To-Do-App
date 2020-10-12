@@ -9,6 +9,7 @@ import ToDoItem from './ToDoItem';
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    background: '#f2f2f2',
   },
 });
 

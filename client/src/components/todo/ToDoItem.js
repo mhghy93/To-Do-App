@@ -6,6 +6,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import EditToDo from './EditToDo';
 import DeleteToDo from './DeleteToDo';
 
@@ -60,7 +62,7 @@ const ToDoItem = ({ todo }) => {
           </Grid>
           <Grid item xs={12} sm={3}>
             <Button variant="contained" onClick={handleClickOpen}>
-              Edit
+              <EditIcon />
             </Button>
             <EditToDo open={open} handleClose={handleClose} todoItem={todo} />
           </Grid>
@@ -70,7 +72,7 @@ const ToDoItem = ({ todo }) => {
               color="secondary"
               onClick={handleDeleteOpen}
             >
-              Delete
+              <DeleteIcon />
             </Button>
             <DeleteToDo
               open={deleteOpen}

@@ -61,17 +61,13 @@ const ToDoItem = ({ todo }) => {
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3}>
-            <Button variant="contained" onClick={handleClickOpen}>
+            <Button color="primary" onClick={handleClickOpen}>
               <EditIcon />
             </Button>
             <EditToDo open={open} handleClose={handleClose} todoItem={todo} />
           </Grid>
           <Grid item xs={12} sm={3}>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={handleDeleteOpen}
-            >
+            <Button color="secondary" onClick={handleDeleteOpen}>
               <DeleteIcon />
             </Button>
             <DeleteToDo

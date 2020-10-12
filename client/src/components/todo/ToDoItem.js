@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import DoneIcon from '@material-ui/icons/Done';
 import EditToDo from './EditToDo';
 import DeleteToDo from './DeleteToDo';
 
@@ -18,6 +20,12 @@ const useStyles = makeStyles({
   },
   dateColor: {
     color: '#757575',
+  },
+  startTaskColor: {
+    color: '#283593',
+  },
+  completeTaskColor: {
+    color: '#009688',
   },
 });
 
@@ -59,6 +67,17 @@ const ToDoItem = ({ todo }) => {
             >
               Created on {new Date(todo.createdAt).toLocaleDateString()}
             </Typography>
+            {!todo.inProgress && !todo.isCompleted && (
+              <Button className={classes.startTaskColor}>
+                <KeyboardArrowRightIcon /> Start Task
+              </Button>
+            )}
+
+            {!todo.isCompleted && (
+              <Button className={classes.completeTaskColor}>
+                <DoneIcon /> Complete Task
+              </Button>
+            )}
           </Grid>
           <Grid item xs={12} sm={3}>
             <Button color="primary" onClick={handleClickOpen}>

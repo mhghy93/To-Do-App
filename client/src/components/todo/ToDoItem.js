@@ -82,6 +82,26 @@ const ToDoItem = ({ todo }) => {
             >
               Created on {new Date(todo.createdAt).toLocaleDateString()}
             </Typography>
+            {todo.inProgressAt && (
+              <Typography
+                className={classes.dateColor}
+                variant="body2"
+                component="div"
+              >
+                In Progress
+                {new Date(todo.inProgressAt).toLocaleDateString()}
+              </Typography>
+            )}
+            {todo.completedAt && (
+              <Typography
+                className={classes.dateColor}
+                variant="body2"
+                component="div"
+              >
+                Completed
+                {new Date(todo.completedAt).toLocaleDateString()}
+              </Typography>
+            )}
             {!todo.inProgress && !todo.isCompleted && (
               <Button
                 className={classes.startTaskColor}

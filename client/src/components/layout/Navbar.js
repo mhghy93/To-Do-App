@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+  },
+  navLinks: {
+    color: '#ffffff',
+    textDecoration: 'none',
   },
 }));
 
@@ -47,10 +52,14 @@ const Navbar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            ToDo
+            <Link to="/" className={classes.navLinks}>
+              ToDo
+            </Link>
           </Typography>
           <Typography variant="h6" className={classes.title}>
-            Show All ToDos
+            <Link to="alltodos" className={classes.navLinks}>
+              Show All ToDos
+            </Link>
           </Typography>
           <AddIcon onClick={handleClickOpen} />
           <AddToDo open={open} handleClose={handleClose} />
